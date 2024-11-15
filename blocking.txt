@@ -1,0 +1,82 @@
+Pași pentru a configura CORS într-un bucket S3:
+Accesează consola AWS:
+
+Mergi la AWS Management Console și autentifică-te.
+Navighează la S3:
+
+În consola AWS, caută și selectează S3.
+Selectează bucket-ul dorit:
+
+În lista de bucket-uri, selectează bucket-ul în care sunt stocate fișierele tale JavaScript (sau alte fișiere de care ai nevoie).
+Accesează secțiunea de configurație CORS:
+
+În pagina bucket-ului selectat, caută secțiunea Permissions și fă clic pe CORS configuration.
+Setează politica CORS:
+
+Adaugă următoarea politică CORS pentru a permite accesul doar de la domeniul radureff.ro:
+xml
+Copy code
+<CORSRule>
+    <AllowedOrigin>domain.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedHeader>*</AllowedHeader>
+</CORSRule>
+
+
+rom google.ads.google_ads.client import GoogleAdsClient
+from google.ads.google_ads.errors import GoogleAdsException
+
+def get_ad_details(ad_id):
+    # Init client object
+    client = GoogleAdsClient.load_from_storage()
+    customer_id = 'INSERT_CUSTOMER_ID'  # ID-ul clientului în Google Ads
+    
+    query = f"""
+    SELECT
+      ad_group_ad.ad.id,
+      ad_group_ad.ad.expanded_text_ad.headline_part1,
+      ad_group_ad.ad.expanded_text_ad.headline_part2,
+      ad_group_ad.ad.expanded_text_ad.description
+    FROM ad_group_ad
+    WHERE ad_group_ad.ad.id = {ad_id}
+    """
+
+    ga_service = client.get_service("GoogleAdsService")
+    
+    try:
+        # Rulează interogarea
+        response = ga_service.search(customer_id=customer_id, query=query)
+        for row in response:
+            ad = row.ad_group_ad.ad
+            print(f"Ad ID: {ad.id}")
+            print(f"Title Part 1: {ad.expanded_text_ad.headline_part1}")
+            print(f"Title Part 2: {ad.expanded_text_ad.headline_part2}")
+            print(f"Description: {ad.expanded_text_ad.description}")
+    except GoogleAdsException as ex:
+        print("Request failed with error(s):")
+        for error in ex.failure.errors:
+            print(f"\t{error.message}")
+        raise
+
+# Exemplu de apelare a funcției
+ad_id = 'INSERT_AD_ID_HERE'  # ID-ul anunțului extras din UTM
+get_ad_details(ad_id)
+
+/*
+acă ai deja un cont Google Ads obișnuit, poți crea un cont de Manager (MCC - My Client Center) destul de simplu, fără să fie nevoie să îndeplinești cerințe speciale. Contul de Manager este util pentru gestionarea mai multor conturi Google Ads și este necesar dacă dorești să utilizezi API-ul Google Ads. Iată cum poți proceda:
+
+Creează un cont de Google Ads Manager:
+
+Mergi la pagina dedicată creării contului de Manager Google Ads Manager Accounts.
+Selectează „Start now” și conectează-te cu contul tău Google.
+În loc să alegi opțiunea de creare a unui cont de Google Ads obișnuit, selectează opțiunea pentru crearea unui cont de Manager.
+Completează informațiile de bază pentru contul Manager, cum ar fi numele contului, zona de fus orar și moneda.
+Asociază contul existent cu contul Manager:
+
+După ce ai creat contul Manager, poți asocia contul tău Google Ads existent cu noul cont de Manager.
+În contul de Manager, accesează secțiunea Settings > Sub-account settings și selectează „Link existing account”.
+Introdu ID-ul contului tău existent Google Ads pentru a trimite o invitație de asociere. Aceasta trebuie acceptată din contul Google Ads obișnuit pentru a finaliza asocierea.
+Accesul API și Developer Token:
+
+Odată ce ai creat contul de Manager, vei putea accesa API Center din meniul „Tools & Settings” al contului de Manager, unde poți solicita un Developer Token și să configurezi accesul API.
+*/
