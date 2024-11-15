@@ -6,7 +6,7 @@ module.exports = {
         populate: './src/populate_source.js',
     },
     output: {
-        filename: '[name].js',
+        filename: '[name]_v1.js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {

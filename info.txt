@@ -1,3 +1,8 @@
+
+********************************
+Blocare origin 
+********************************
+
 Pași pentru a configura CORS într-un bucket S3:
 Accesează consola AWS:
 
@@ -22,6 +27,9 @@ Copy code
     <AllowedHeader>*</AllowedHeader>
 </CORSRule>
 
+********************************
+Obtine denumire campanie
+********************************
 
 rom google.ads.google_ads.client import GoogleAdsClient
 from google.ads.google_ads.errors import GoogleAdsException

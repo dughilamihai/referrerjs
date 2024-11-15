@@ -1,0 +1,7 @@
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+RewriteBase /js/
+
+# Blochează accesul fișierelor .js dacă nu provine de pe radureff.ro
+RewriteCond %{HTTP_HOST} !^radureff\.ro$ [NC]
+RewriteRule ^.*\.js$ - [F,L]
