@@ -29,7 +29,7 @@ function getReferrerSourceFromCookie() {
 
 // Populate hidden fields
 function populateUTMFields() {
-    console.log('Populating hidden fields');
+
     const referrerSource = getReferrerSourceFromCookie();
     if (referrerSource) {
         for (let i = 0; i < utmKeys.length; i++) {
@@ -38,16 +38,12 @@ function populateUTMFields() {
 
             if (value) {
                 try {
-                    const inputFields = document.querySelectorAll(`[id*=${key}]`); 
-                
-                    // Loop through each matched element and set its value
-                    inputFields.forEach(inputField => {
-                        if (inputField.value !== undefined) {
-                            inputField.value = value;
-                        }
-                    });
+                    const inputField = document.getElementById(key);
+                    if (inputField) {
+                        inputField.value = value;
+                    }
                 } catch (error) {
-                    console.error("A apărut o eroare la actualizarea câmpurilor UTM:", error);
+                    console.error(`Eroare la setarea valorii pentru ${key}:`, error);
                 }
             }
         }

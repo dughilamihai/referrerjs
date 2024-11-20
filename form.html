@@ -1,0 +1,413 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+    <script>
+      function validateForm() {
+        var checkboxes = document.getElementsByName("answers[12878][answers][]");
+        var isChecked = false;
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            isChecked = true;
+            break;
+          }
+        }
+        if (!isChecked) {
+          alert("Please select at least one option for apartment type.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="formContainer">
+      <form id="spark-registration-form" action="https://dev.backend.whitebox.digital/rl-core/api/leads/website_form/form" accept-charset="UTF-8" method="post" onsubmit="return validateForm()">
+        <input type="hidden" name="authenticity_token" value="luUFJ3qGUsLC1XB4yremMWFVT0CWjsKHVLAMRARYZ6b5VSx79jbEPI2XJRjplU3ecoT1AVICNTGTBHhJ13Jiqg==" autocomplete="off" />
+        <input type="hidden" name="source" id="source" value="Website" autocomplete="off" />
+        <input type="hidden" name="redirect_success" id="redirect_success" value="" autocomplete="off" />
+        <input type="hidden" name="redirect_error" id="redirect_error" value="" autocomplete="off" />
+        <input type="hidden" name="traffic_source" id="traffic_source" value="" autocomplete="off" />  
+        <input type="hidden" name="utm_source" id="utm_source" value="" autocomplete="off" />
+        <input type="hidden" name="utm_medium" id="utm_medium" value="" autocomplete="off" />
+        <input type="hidden" name="utm_campaign" id="utm_campaign" value="" autocomplete="off" />
+        <input type="hidden" name="utm_adgroup" id="utm_adgroup" value="" autocomplete="off" />
+        <input type="hidden" name="utm_content" id="utm_content" value="" autocomplete="off" />                                              
+        <input type="text" name="are_you_simulated" id="are_you_simulated" placeholder="Leave this field blank" style="display:none;" />
+        
+        <!-- Contact Details -->
+        <div class="sectionRow">
+          <div class="userRow">
+            <div class="userField">
+              <input type="text" id="contact_first_name" name="contact[first_name]" placeholder="First Name *" required maxlength="50" />
+            </div>
+            <div class="userField">
+              <input type="text" id="contact_last_name" name="contact[last_name]" required maxlength="50" placeholder="Last Name *" />
+            </div>
+          </div>
+          <div class="userRow">
+            <div class="userField">
+              <input type="email" id="contact_email" name="contact[email]" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="Email *" />
+            </div>
+            <div class="userField">
+              <input type="tel" id="contact_phone" name="contact[phone]" maxlength="255" placeholder="Phone" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- Apartment Type (12878) -->
+        <div class="sectionRow">
+          <p class="labeltext">Ce tip de apartament cautati? *</p>
+          <div class="checkboxRow">
+            <div class="checkbox">
+              <input type="checkbox" id="answers_12878_2-camere" name="answers[12878][answers][]" value="2 Camere" />
+              <label for="answers_12878_2-camere" class="userLabel">2 Camere</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="answers_12878_3-camere" name="answers[12878][answers][]" value="3 Camere" />
+              <label for="answers_12878_3-camere" class="userLabel">3 Camere</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="answers_12878_4-camere" name="answers[12878][answers][]" value="4 Camere" />
+              <label for="answers_12878_4-camere" class="userLabel">4 Camere</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- GDPR Consent (12881) -->
+        <div class="sectionRow">
+          <p class="labeltext">
+            Sunt de acord ca datele mele cu caracter personal să fie prelucrate pentru a-mi trimite informații cu privire la ofertele imobiliare conform regulament gdpr *
+          </p>
+          <select id="answers_12881" name="answers[12881][answers]" required class="selectStyle">
+            <option value>Select</option>
+            <option value="DA">DA</option>
+          </select>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="sectionRow">
+          <div class="userRow">
+            <textarea class="textareaC" placeholder="Comentarii sau intrebari" name="contact[comments]" id="contact_comments" rows="4"></textarea>
+          </div>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="sectionRow">
+          <div class="userRow">
+            <textarea class="textareaC" placeholder="Comentarii sau intrebari" name="contact[comments]" id="contact_comments" rows="4"></textarea>
+          </div>
+        </div>        
+
+        <!-- Submit Button -->
+        <div class="buttonBox">
+          <button type="submit" id="submitButton" class="button submit template-button">Register with One Verdi</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+    window.addEventListener("load", function () {
+        // Hides spam trap
+        document.getElementById("are_you_simulated").style.display = "none";
+    });
+
+    const form = document.querySelector("#spark-registration-form");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        
+        if (!validateForm()) return false;
+
+        const formData = new FormData(form);
+
+        // Collect selected checkboxes and set in form data
+        const selectedAnswers = Array.from(document.querySelectorAll("input[name='answers[12878][answers][]']:checked")).map(checkbox => checkbox.value);
+        if (selectedAnswers.length > 0) {
+            formData.set("answers[12878][answers][]", JSON.stringify(selectedAnswers));
+        }
+
+        const apiKey = 'OMVJDFCVam405Gr9N4KjK4zdbFbaNgb07mVUBEbV';
+        const tenantName = 'REAL_ESTATE';
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'x-api-key': apiKey,
+                'x-tenant-name': tenantName
+            }
+        })
+        .then(() => {
+            // Thank You HTML content
+            const thankYouHTML = `
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            background: #f4f6fb;
+            padding-top: 80px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        .mat-caption, .loading-description {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .thank-you-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .thank-you-container {
+            border: 1px solid #f4f6fb;
+            border-radius: 20px;
+            background: #ffff;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .people-image {
+            width: 730px;
+            display: block;
+            padding: 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 125, 77, 0.29);
+        }
+
+        .green-check {
+            width: 60px;
+        }
+
+        .check-and-text {
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+            z-index: 10;
+            gap: 10px;
+            margin-top: 20px;
+            margin-left: 20px;
+            color: #ffff;
+        }
+
+        h1 {
+            margin: 0;
+            line-height: normal;
+        }
+
+        h3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .thank-you-text h1,
+        .thank-you-text h3 {
+            color: white;
+        }
+
+
+        .mat-caption {
+            font-size: 14px;
+        }
+
+        .back-to-website {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            max-width: fit-content;
+            background: #ffffff;
+            border: 1px solid #ffffff;
+            padding: 8px 12px 8px 8px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .back-to-website:hover {
+            background: #f0f9ff;
+            border: 1px solid #86D1CD;
+        }
+
+        .back-text {
+            line-height: 24px;
+            color: #4c4d51;
+            font-weight: 500;
+        }
+
+        .loading-description {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-top: 8px;
+        }
+
+        .wrap {
+            height: 10px;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: space-between;
+            width: 21px;
+            margin-left: 5px;
+            color: white;
+        }
+
+        .bounce-ball {
+            position: relative;
+            display: inline-block;
+            height: 37px;
+            width: 5px;
+        }
+
+        .bounce-ball::before {
+            position: absolute;
+            content: '';
+            display: block;
+            top: 0;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: white;
+            transform-origin: 50%;
+            animation: bounce 500ms alternate infinite ease;
+        }
+
+        .ball1::before {
+            animation-delay: 0ms;
+        }
+
+        .ball2::before {
+            animation-delay: 200ms;
+        }
+
+        .ball3::before {
+            animation-delay: 400ms;
+        }
+
+        .image-source {
+            color: lightblue;
+            display: flex;
+            justify-content: flex-end;
+            height: 20px;
+            margin-top: -20px;
+            padding-bottom: 20px;
+            gap: 3px;
+        }
+
+        a { color: lightblue }
+
+        @keyframes bounce {
+            0% {
+                top: 10px;
+                height: 5px;
+                border-radius: 100%;
+                transform: scaleX(1.5);
+            }
+            35% {
+                height: 5px;
+                border-radius: 100%;
+                transform: scaleX(1);
+            }
+            100% {
+                top: 0;
+            }
+        }
+
+        @media only screen and (max-width: 717px) {
+            .thank-you-container {
+                padding: 20px;
+            }
+
+            .check-and-text {
+                position: relative;
+                display: flex;
+                justify-content: center;
+            }
+
+            .image-wrapper {
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="thank-you-page">
+    <div class="thank-you-container">
+        <div class="check-and-text">
+            <img src="https://rl-client-assets-public.s3.eu-west-1.amazonaws.com/green-check-round.png" alt="" class="green-check">
+            <div class="thank-you-text">
+                <h1>Thank you!</h1>
+                <h3>Your request has been received!</h3>
+                <div class="loading-description">
+                    <div class="mat-caption">This page will be redirected soon</div>
+                    <div class="wrap">
+                        <div class="loading">
+                            <div class="bounce-ball ball1"></div>
+                            <div class="bounce-ball ball2"></div>
+                            <div class="bounce-ball ball3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="image-wrapper">
+            <img src="https://rl-client-assets-public.s3.eu-west-1.amazonaws.com/girl.jpg" alt="Image of a girl" class="people-image">
+            <div class="overlay"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>`;
+
+            document.body.innerHTML = thankYouHTML;
+
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Form submission failed: ' + error.message);
+        });
+    });
+</script>
+
+  </body>
+</html>

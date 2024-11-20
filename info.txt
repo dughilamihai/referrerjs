@@ -1,4 +1,14 @@
 
+
+apartamentepremium.ro/?utm_source=13232&utm_medium=2222&utm_campaign=3333&utm_adgroup=444&utm_content=555
+
+
+********************************
+
+Rulează Webpack pentru a genera fișierul de build:
+npx webpack --config webpack.config.js
+
+
 ********************************
 Blocare origin 
 ********************************

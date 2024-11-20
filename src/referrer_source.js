@@ -1,6 +1,5 @@
 // Set UTM and traffic sources
-function setReferrerSourceCookie() {
-    console.log('Setting referrer source');    
+function setReferrerSourceCookie() { 
     if (document.cookie.indexOf('referrer_source') === -1) {
         
         const utmParameters = getUTMParameters();
