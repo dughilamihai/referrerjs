@@ -10,6 +10,7 @@ function setReferrerSourceCookie() {
             utm_source: utmParameters.utm_source || '',
             utm_medium: utmParameters.utm_medium || '',
             utm_campaign: utmParameters.utm_campaign || '',
+            utm_term: utmParameters.utm_term || '',            
             utm_adgroup: utmParameters.utm_adgroup || '',
             utm_content: utmParameters.utm_content || ''
         };
@@ -58,7 +59,7 @@ function getTrafficSource(referrer) {
 
 function getUTMParameters() {
     const utmParameters = {};
-    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_adgroup', 'utm_content'];
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_adgroup', 'utm_content'];
 
     try {
         const urlParams = new URLSearchParams(window.location.search);

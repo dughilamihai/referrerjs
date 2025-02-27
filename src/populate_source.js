@@ -1,5 +1,5 @@
 // UTMs keys to look
-const utmKeys = ['traffic_source', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_adgroup', 'utm_content'];
+const utmKeys = ['traffic_source', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_adgroup', 'utm_content'];
 
 // Get cookie value by name
 function getCookie(name) {

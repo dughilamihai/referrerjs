@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+    <script>
+      function validateForm() {
+        var checkboxes = document.getElementsByName("answers[21380][answers][]");
+        var isChecked = false;
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            isChecked = true;
+            break;
+          }
+        }
+        if (!isChecked) {
+          alert("Please select at least one option for apartment type.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="formContainer">
+      <form class="userform" action="https://spark.re/ambrella/w-sisesti-423/register/sisesti-form" accept-charset="UTF-8" method="post" id="contactForm" onsubmit="return validateForm()">
+        <input type="hidden" name="authenticity_token" value="LCvLFRxik6qZr+xs+fbQqaXtvMfWbYnl/doy18n4IZLEYHi/Bgzl2A240p6h320EQpYg5KeRkPcglkBGIFCB5w==" autocomplete="off" />
+        <input type="hidden" name="source" id="source" autocomplete="off" />
+        <input type="hidden" name="max_selections" id="max_selections" autocomplete="off" />
+        <input type="hidden" name="redirect_success" id="redirect_success" autocomplete="off" />
+        <input type="hidden" name="redirect_error" id="redirect_error" autocomplete="off" />
+        
+            <!-- UTM fields -->
+    <input type="hidden" name="traffic_source" id="traffic_source" value="" autocomplete="off" />  
+    <input type="hidden" name="utm_source" id="utm_source" value="" autocomplete="off" />
+    <input type="hidden" name="utm_medium" id="utm_medium" value="" autocomplete="off" />
+    <input type="hidden" name="utm_campaign" id="utm_campaign" value="" autocomplete="off" />
+    <input type="hidden" name="utm_term" id="utm_term" value="" autocomplete="off" />
+    <input type="hidden" name="utm_adgroup" id="utm_adgroup" value="" autocomplete="off" />
+    <input type="hidden" name="utm_content" id="utm_content" value="" autocomplete="off" />  
+        
+        <div class="sectionRow">
+          <div class="userRow">
+            <div class="userField">
+              <input type="text" id="contact_first_name" name="contact[first_name]" placeholder="Prenume *" required maxlength="50" />
+            </div>
+            <div class="userField">
+              <input type="text" id="contact_last_name" name="contact[last_name]" required maxlength="50" placeholder="Nume *" />
+            </div>
+          </div>
+          <div class="userRow">
+            <div class="userField">
+              <input type="email" id="contact_email" name="contact[email]" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="Email *" />
+            </div>
+            <div class="userField">
+              <input type="tel" id="contact_phone" name="contact[phone]" maxlength="255" placeholder="Telefon" required />
+            </div>
+          </div>
+        </div>
+        <div class="sectionRow">
+          <p class="labeltext">Ce tip de apartament cautati? *</p>
+          <div class="checkboxRow">
+            <div class="checkbox">
+              <input type="checkbox" id="vehicle1" name="answers[21380][answers][]" value="2 Camere" />
+              <label for="vehicle1" class="userLabel">2 Camere</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="vehicle2" name="answers[21380][answers][]" value="3 Camere" />
+              <label for="vehicle2" class="userLabel">3 Camere</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="vehicle3" name="answers[21380][answers][]" value="4 Camere" />
+              <label for="vehicle3" class="userLabel">4 Camere</label>
+            </div>
+          </div>
+        </div>
+        <div class="sectionRow">
+          <div class="userRow">
+            <textarea class="textareaC" placeholder="Comentarii sau intrebari" name="contact[comments]" id="contact_comments" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="sectionRow">
+          <p class="labeltext">
+            Da, sunt de acord ca datele mele cu caracter personal să fie prelucrate pentru a-mi trimite informații cu privire la ofertele imobiliare conform regulament Gdpr *
+          </p>
+          <select id="answers_21381" name="answers[21381][answers]" required class="selectStyle">
+            <option value>Select</option>
+            <option value="DA">DA</option>
+          </select>
+          <div class="buttonBox">
+            <button type="submit" id="submitButton">TRIMITE MESAJ</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+<script src="https://rl-client-assets-public.s3.eu-west-1.amazonaws.com/sisesti423_referrer_v1.js"></script>
+
+<script src="https://rl-client-assets-public.s3.eu-west-1.amazonaws.com/sisesti423_populate_v1.js"></script>
+<script>
+    
+    
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      const formData = new FormData(this);
+      formData.delete("authenticity_token");
+  
+      // Transformă răspunsurile selectate într-un JSON
+      const selectedAnswers = Array.from(document.querySelectorAll("input[name='answers[21380][answers][]']:checked"))
+          .map(checkbox => checkbox.value);
+      if (selectedAnswers.length > 0) {
+          formData.set("answers[21380][answers][]", JSON.stringify(selectedAnswers));
+      }
+  
+      const entries = Array.from(formData.entries());
+      formData.forEach((value, key) => {
+          if (key.includes("answers[21380][answers]")) {
+              formData.delete(key);
+              formData.append(key.replace("21380", "12878"), value);
+          }
+          if (key.includes("answers[21381][answers]")) {
+              formData.delete(key);
+              formData.append(key.replace("21381", "12881"), value);
+          }
+      });
+
+      sendToExternalEndpoint(formData);
+    
+     event.target.submit();
+  });
+
+    function sendToExternalEndpoint(formData) {
+      const externalEndpoint = "https://backend.kingmaker.re/rl-core/api/leads/website_form/form";
+    
+      const headers = {
+        "x-api-key": "fAo97raMjP9oiQmSpEusM9fJcZnNtNP761bvkoC2",
+        "x-tenant-name": "WEISENBURGER",
+      };
+    
+      fetch(externalEndpoint, {
+        method: "POST",
+        headers,
+        body: formData,
+      })
+      .then(response => {
+        if (!response.ok) {
+          console.error("Eroare API:", response.status, response.statusText);
+        } else {
+          console.log("Date trimise cu succes către endpoint-ul extern!");
+        }
+      })
+      .catch(error => {
+        console.error("Eroare la trimiterea către API:", error);
+      });
+    }
+    
+    
+
+  </script>
+
+
+    
+  </body>
+</html>
